@@ -38,7 +38,7 @@ const Editor: FC<IProps> = ({ onChange }) => {
 
   }, []);
 
-  return <div className="flex-auto" ref={containerRef}></div>;
+  return <div className="flex-auto overflow-hidden" ref={containerRef}></div>;
 };
 
 export default Editor;

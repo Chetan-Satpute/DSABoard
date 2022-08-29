@@ -23,7 +23,7 @@ class Board {
   }
 
   resizeCanvas() {
-    const padding = 10;
+    const padding = 0;
 
     this.canvas.width = this.container.clientWidth - padding;
     this.canvas.height = this.container.clientHeight - padding;

@@ -14,13 +14,11 @@ function SideBar() {
   return (
     <div
       className={`
-        w-full h-1/3 md:w-1/2 md:h-full 
-        border-t-2 border-neutral-200 
-        md:border-t-transparent 
-        md:border-l-neutral-200 
-        md:border-l-2 
+        w-1/2 h-full 
+        border-l-2 
+        border-l-neutral-200 
         flex flex-col 
-        space-y-2 
+        space-y-2
         bg-[#1e1e1e]
       `}
     >

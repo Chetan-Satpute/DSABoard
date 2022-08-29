@@ -9,8 +9,8 @@ const App: FC = () => {
 
   return (
     <CodeContext.Provider value={codeState}>
-      <div className="bg-neutral-900 h-screen w-screen flex flex-col md:flex-row">
-        <div className="w-full h-2/3 md:w-1/2 md:h-full flex flex-col">
+      <div className="bg-neutral-900 h-screen w-screen flex">
+        <div className="w-1/2 flex flex-col">
           <TitleBar />
           <CanvasIFrame />
         </div>
