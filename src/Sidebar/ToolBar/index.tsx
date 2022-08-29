@@ -1,17 +1,27 @@
 import React, { FC } from "react";
+import useFullscreen from "../useFullscreen";
 
 interface IProps {
   handleRun: () => void;
 }
 
 const ToolBar: FC<IProps> = ({ handleRun }) => {
+  const [fullscreen, toggleFullscreen] = useFullscreen();
+
   return (
     <div className="px-3 py-2 flex justify-between items-center">
       <Button
         lable="API Reference"
         icon="description"
         color="bg-blue-500 hover:bg-blue-700"
-        onClick={handleRun}
+        onClick={() => {}}
+      />
+
+      <Button
+        lable={fullscreen ? "Exit Fullscreen" : "Fullscreen"}
+        icon={fullscreen ? "fullscreen_exit" : "fullscreen"}
+        color="bg-violet-500 hover:bg-violet-700"
+        onClick={toggleFullscreen}
       />
 
       <Button
@@ -34,7 +44,7 @@ interface ButtonProps {
 const Button: FC<ButtonProps> = ({ lable, icon, color, onClick }) => {
   return (
     <button
-      className={`flex text-neutral-200 p-1 px-2 rounded-md ${color}`}
+      className={`flex text-neutral-200 p-1 px-2 rounded-md space-x-1 ${color}`}
       onClick={onClick}
     >
       <span className="font-semibold">{lable}</span>
