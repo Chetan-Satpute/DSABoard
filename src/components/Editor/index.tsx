@@ -1,6 +1,5 @@
 import React, { FC, useEffect, useRef } from "react";
 import * as monaco from 'monaco-editor';
-// import editorTheme from './theme.json';
 
 // Since packaging is done by you, you need
 // to instruct the editor how you named the
@@ -27,9 +26,6 @@ const Editor: FC<IProps> = ({ onChange }) => {
       language: 'javascript',
       theme: 'vs-dark'
     });
-
-    // monaco.editor.defineTheme('night-owl', editorTheme);
-    // monaco.editor.setTheme('night-owl');
 
     const changeSubscription = editor.onDidChangeModelContent((_) => {
       onChange(editor.getValue());

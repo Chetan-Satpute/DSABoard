@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
-import { CodeContext } from "../App";
-import Editor from "./Editor";
+import { CodeContext } from "../../context/CodeContext";
+import Editor from "../Editor";
 import ToolBar from "./ToolBar";
 
 function SideBar() {
@@ -12,7 +12,18 @@ function SideBar() {
   };
 
   return (
-    <div className="w-full h-1/3 md:w-1/2 md:h-full border-t-2 border-neutral-200 md:border-t-transparent md:border-l-2 md:border-l-neutral-200 flex flex-col space-y-2 bg-[#1e1e1e]">
+    <div
+      className={`
+        w-full h-1/3 md:w-1/2 md:h-full 
+        border-t-2 border-neutral-200 
+        md:border-t-transparent 
+        md:border-l-neutral-200 
+        md:border-l-2 
+        flex flex-col 
+        space-y-2 
+        bg-[#1e1e1e]
+      `}
+    >
       <ToolBar handleRun={handleRun} />
       <Editor onChange={setEditorValue} />
     </div>

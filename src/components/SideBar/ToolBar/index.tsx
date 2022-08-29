@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 import { useNavigate } from "react-router-dom";
-import useFullscreen from "../useFullscreen";
+import useFullscreen from "../../../hooks/useFullscreen";
 
 interface IProps {
   handleRun: () => void;

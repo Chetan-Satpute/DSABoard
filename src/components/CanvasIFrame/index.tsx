@@ -1,5 +1,5 @@
 import React, { FC, useContext } from "react";
-import { CodeContext } from "../App";
+import { CodeContext } from "../../context/CodeContext";
 import getSrcDoc from "./getSrcDoc";
 
 const CanvasIFrame: FC = () => {

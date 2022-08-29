@@ -1,12 +1,8 @@
 import React, { FC, useState } from "react";
-import CanvasIFrame from "../CanvasIFrame";
-import SideBar from "../Sidebar";
-import TitleBar from "../TitleBar";
-
-export const CodeContext = React.createContext<[string, (_: string) => void]>([
-  "",
-  () => {},
-]);
+import CanvasIFrame from "../../components/CanvasIFrame";
+import SideBar from "../../components/SideBar";
+import TitleBar from "../../components/TitleBar";
+import { CodeContext } from "../../context/CodeContext";
 
 const App: FC = () => {
   const codeState = useState("");

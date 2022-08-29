@@ -1,4 +1,4 @@
-import { useLayoutEffect, useState } from "react";
+import { useState, useLayoutEffect } from "react";
 
 function useFullscreen(): [boolean, () => void] {
   const [fullscreen, setFullscreen] = useState(false);

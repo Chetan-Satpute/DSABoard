@@ -2,9 +2,8 @@ import React from "react";
 import { createRoot } from "react-dom/client";
 import { HashRouter, Route, Routes } from "react-router-dom";
 
-import App from "./App";
-import Docs from "./Docs";
-
+import App from "./routes/App";
+import Docs from "./routes/Docs";
 import "./index.css";
 
 const root = createRoot(document.getElementById("root"));
