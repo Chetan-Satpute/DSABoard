@@ -1,4 +1,5 @@
 import React, { FC } from "react";
+import { useNavigate } from "react-router-dom";
 import useFullscreen from "../useFullscreen";
 
 interface IProps {
@@ -7,6 +8,7 @@ interface IProps {
 
 const ToolBar: FC<IProps> = ({ handleRun }) => {
   const [fullscreen, toggleFullscreen] = useFullscreen();
+  const navigate = useNavigate();
 
   return (
     <div className="px-3 py-2 flex justify-between items-center">
@@ -14,7 +16,7 @@ const ToolBar: FC<IProps> = ({ handleRun }) => {
         lable="API Reference"
         icon="description"
         color="bg-blue-500 hover:bg-blue-700"
-        onClick={() => {}}
+        onClick={() => navigate('/docs')}
       />
 
       <Button
