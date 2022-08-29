@@ -1,16 +1,22 @@
-import React, { FC } from "react";
+import React, { useContext, useState } from "react";
+import { CodeContext } from "../App";
+import Editor from "./Editor";
+import ToolBar from "./ToolBar";
 
-const SideBar: FC = () => {
+function SideBar() {
+  const [editorValue, setEditorValue] = useState("// Hello World!");
+  const [_, setCode] = useContext(CodeContext);
+
+  const handleRun = () => {
+    setCode(editorValue);
+  };
+
   return (
-    <div className="w-full h-1/3 md:w-1/3 md:h-full p-2 bg-neutral-800 border-t-2 border-neutral-200 md:border-t-transparent md:border-l-2 md:border-l-neutral-200">
-      <button
-        className="bg-violet-500 rounded-md p-2 w-full"
-        onClick={async () => {}}
-      >
-        Click Here!
-      </button>
+    <div className="w-full h-1/3 md:w-1/2 md:h-full border-t-2 border-neutral-200 md:border-t-transparent md:border-l-2 md:border-l-neutral-200 flex flex-col space-y-2 bg-[#1e1e1e]">
+      <ToolBar handleRun={handleRun} />
+      <Editor onChange={setEditorValue} />
     </div>
   );
-};
+}
 
 export default SideBar;

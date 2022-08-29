@@ -5,7 +5,9 @@ function getSrcDoc(code: string) {
       <script>
         window.addEventListener('load', () => {
           const board = new lib.Board(document.getElementById('canvas-container'));
-          (async() => {${code}})()
+          (async() => {
+            ${code}
+          })()
         });
       </script>
     </body>

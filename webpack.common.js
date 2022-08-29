@@ -4,7 +4,13 @@ const { DefinePlugin } = require("webpack");
 
 /** @type {import('webpack').Configuration} */
 const config = {
-  entry: "./src/index.tsx",
+  entry: {
+    app: "./src/index.tsx",
+
+    // Package each language's worker and give these filenames in `getWorkerUrl`
+    "editor.worker": "monaco-editor/esm/vs/editor/editor.worker.js",
+    "ts.worker": "monaco-editor/esm/vs/language/typescript/ts.worker",
+  },
   module: {
     rules: [
       {
