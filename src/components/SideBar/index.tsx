@@ -14,7 +14,7 @@ function SideBar() {
   return (
     <div
       className={`
-        w-1/2 h-full 
+        w-5/12 h-full 
         border-l-2 
         border-l-neutral-200 
         flex flex-col 
