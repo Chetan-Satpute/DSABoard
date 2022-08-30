@@ -36,7 +36,7 @@ const Editor: FC<IProps> = ({ onChange }) => {
     observer.observe(containerRef.current);
 
     return () => {
-      observer.unobserve(containerRef.current);
+      observer.disconnect();
       changeSubscription.dispose();
       editor.dispose();
     };

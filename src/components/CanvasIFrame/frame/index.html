@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script src="lib/lib.js"></script>
+    <style>
+      html,
+      body {
+        margin: 0;
+        height: 100%;
+        width: 100%;
+      }
+      body {
+        position: relative;
+      }
+      #canvas-container {
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      #error-div {
+        display: none;
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+
+        color: red;
+        font-size: 1.25rem;
+        line-height: 1.75rem;
+        font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+          "Liberation Mono", "Courier New", monospace;
+
+        background: rgb(23, 23, 23);
+        justify-content: center;
+        align-items: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="canvas-container" className="text-xl font-mono bg-neutral-900"></div>
+    <div id="error-div"><div id="error-card"></div></div>
+  </body>
+</html>

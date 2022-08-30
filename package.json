@@ -3,7 +3,7 @@
   "scripts": {
     "start": "webpack serve --config webpack.dev.js --node-env development",
     "dev": "concurrently -n app,lib \"npm start\" \"cd lib && npm start\"",
-    "prebuild": "cd lib && npm build",
+    "prebuild": "cd lib && npm run build",
     "build": "webpack --config webpack.prod.js --node-env production --progress",
     "dev:build": "webpack --config webpack.dev.js --node-env development --progress"
   },
