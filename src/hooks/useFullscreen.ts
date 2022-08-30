@@ -18,10 +18,10 @@ function useFullscreen(): [boolean, () => void] {
       setFullscreen(document.fullscreenElement !== null);
     };
 
-    document.addEventListener("fullscreenchange", handleFullscreenChange);
+    document.documentElement.addEventListener("fullscreenchange", handleFullscreenChange);
 
     return () =>
-      document.removeEventListener("fullscreenchange", handleFullscreenChange);
+      document.documentElement.removeEventListener("fullscreenchange", handleFullscreenChange);
   }, []);
 
   return [fullscreen, toggleFullscreen];
