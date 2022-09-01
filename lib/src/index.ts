@@ -1,6 +1,8 @@
 import Board from "./Board";
+import Node from "./Node";
 
 export {
-  Board
+  Board,
+  Node
 }
 
