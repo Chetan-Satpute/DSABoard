@@ -1,15 +1,13 @@
 import Structure from "../Structure";
 import Canvas from "./canvas";
+import State from "./state";
 
 class Board {
   container: HTMLDivElement;
   canvas: Canvas;
 
   /** Structures to draw on canvas */
-  state: {
-    structs: { [id: number]: Structure };
-  };
-  currentId: number;
+  state: State;
 
   constructor(container: HTMLDivElement) {
     this.container = container;
@@ -21,35 +19,17 @@ class Board {
     // Resize canvas whenever container size changes
     new ResizeObserver(this.render).observe(this.container);
 
-    this.currentId = 0;
-    this.state = {
-      structs: {},
-    };
+    this.state = new State();
   }
 
-  /** Get unique ID */
-  getID = () => this.currentId++;
-
   /** Add a structure to board */
-  add = (...args: Structure[]) => {
-    for (let struct of args) {
-      struct._id = this.getID();
-      this.state.structs[struct._id] = struct;
-    }
-  };
+  add = (...args: Structure[]) => this.state.addStruct(...args);
 
   /** Remove a structure from board */
-  remove = (...args: Structure[]) => {
-    for (let struct of args) {
-      if (this.state.structs[struct._id] !== undefined) {
-        delete this.state.structs[struct._id];
-      }
-    }
-  };
+  remove = (...args: Structure[]) => this.state.removeStruct(...args);
 
-  resizeCanvas = () => {
+  resizeCanvas = () =>
     this.canvas.resize(this.container.clientWidth, this.container.clientHeight);
-  };
 
   render = () => {
     const ctx = this.canvas.canvas.getContext("2d");
@@ -61,9 +41,7 @@ class Board {
     ctx.setTransform(this.canvas.matrix);
 
     // Draw logic
-    for (let id in this.state.structs) {
-      this.state.structs[id].draw(ctx);
-    }
+    this.state.draw(ctx);
   };
 }
 
