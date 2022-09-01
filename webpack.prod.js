@@ -1,3 +1,4 @@
+const path = require("path");
 const { merge } = require("webpack-merge");
 const common = require("./webpack.common");
 
@@ -8,7 +9,6 @@ const CopyPlugin = require("copy-webpack-plugin");
 /** @type {import('webpack').Configuration} */
 const config = {
   mode: "production",
-  // devtool: "source-map",
   module: {
     rules: [
       {
@@ -24,7 +24,10 @@ const config = {
   plugins: [
     new MiniCssExtractPlugin(),
     new CopyPlugin({
-      patterns: ['./public/'],
+      patterns: [
+        { from: path.join(__dirname, "public"), noErrorOnMissing: true },
+        { from: path.join(__dirname, "lib", "dist") },
+      ],
     }),
   ],
 };

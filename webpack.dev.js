@@ -15,15 +15,20 @@ const config = {
     ],
   },
   devServer: {
-    static: {
-      directory: path.join(__dirname, "public"),
-    },
+    static: [
+      {
+        directory: path.join(__dirname, "public"),
+      },
+      {
+        directory: path.join(__dirname, "lib", "dist"),
+      },
+    ],
     historyApiFallback: true,
   },
   stats: "minimal",
   output: {
-    publicPath: '/'
-  }
+    publicPath: "/",
+  },
 };
 
 module.exports = merge(common, config);
