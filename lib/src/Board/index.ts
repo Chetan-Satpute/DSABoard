@@ -1,3 +1,4 @@
+import Edge from "../Edge";
 import Structure from "../Structure";
 import Canvas from "./canvas";
 import State from "./state";
@@ -27,6 +28,12 @@ class Board {
 
   /** Remove a structure from board */
   remove = (...args: Structure[]) => this.state.removeStruct(...args);
+
+  /** Add a edge to board */
+  addEdge = (...args: Edge[]) => this.state.addEdge(...args);
+
+  /** Remove a edge from board */
+  removeEdge = (...args: Edge[]) => this.state.removeEdge(...args);
 
   resizeCanvas = () =>
     this.canvas.resize(this.container.clientWidth, this.container.clientHeight);

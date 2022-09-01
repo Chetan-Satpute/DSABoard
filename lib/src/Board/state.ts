@@ -1,15 +1,21 @@
+import Edge from "../Edge";
 import Structure from "../Structure";
 
 class State {
   private structs: {
     [id: number]: Structure;
-  }
+  };
+
+  private edges: {
+    [id: number]: Edge;
+  };
 
   private newStructId: number;
   private newEdgeId: number;
 
   constructor() {
     this.structs = {};
+    this.edges = {};
 
     this.newStructId = 0;
     this.newEdgeId = 0;
@@ -32,14 +38,33 @@ class State {
     }
   };
 
-  draw = (ctx: CanvasRenderingContext2D) => {
+  /** Add a edge to board */
+  addEdge = (...args: Edge[]) => {
+    for (let edge of args) {
+      edge._id = this.newEdgeId++;
+      this.edges[edge._id] = edge;
+    }
+  };
 
+  /** Remove a edge from board */
+  removeEdge = (...args: Edge[]) => {
+    for (let edge of args) {
+      if (this.edges[edge._id] !== undefined) {
+        delete this.edges[edge._id];
+      }
+    }
+  };
+
+  draw = (ctx: CanvasRenderingContext2D) => {
     // Draw structures
     for (let id in this.structs) {
       this.structs[id].draw(ctx);
     }
-  }
 
+    for (let id in this.edges) {
+      this.edges[id].draw(ctx);
+    }
+  };
 }
 
 export default State;
