@@ -41,5 +41,14 @@
   <body>
     <div id="canvas-container" className="text-xl font-mono bg-neutral-900"></div>
     <div id="error-div"><div id="error-card"></div></div>
+    <script>
+      window.onerror = (error) => {
+        const errorDiv = document.getElementById('error-div');
+        const errorCard = document.getElementById('error-card');
+
+        errorDiv.style.display = 'flex';
+        errorCard.innerHTML = error.toString();
+      }
+    </script>
   </body>
 </html>
