@@ -105,3 +105,13 @@ export const drawHead = (
 
   ctx.fill();
 };
+
+export const calculateLength = (a: Point, b: Point, percent: number) => {
+  let xDiff = b.x - a.x;
+  let yDiff = b.y - a.y;
+
+  let length = Math.sqrt(xDiff * xDiff + yDiff * yDiff);
+
+  return length * percent / 100;
+};
+

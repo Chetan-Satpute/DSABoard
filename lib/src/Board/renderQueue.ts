@@ -1,10 +1,9 @@
 type RenderFunction = () => Promise<void>;
-type PriorityFunction = () => void;
 
 class RenderQueue {
 
   private queue: RenderFunction[];
-  private priorityQueue: PriorityFunction[]; // For canvas event handlers
+  private priorityQueue: RenderFunction[]; // For canvas event handlers
 
   constructor() {
     this.queue = [];
@@ -16,14 +15,14 @@ class RenderQueue {
   setLoop = async () => {
 
     while (true) {
-      await new Promise(resolve => window.requestAnimationFrame(resolve));
-
       if (this.priorityQueue.length !== 0) {
         let priorityFunction = this.priorityQueue.shift();
-        priorityFunction();
+        await priorityFunction();
       } else if (this.queue.length !== 0) {
         let renderFunction = this.queue.shift();
         await renderFunction();
+      } else {
+        await new Promise(resolve => setTimeout(resolve, 100));
       }
     }
 
@@ -33,7 +32,7 @@ class RenderQueue {
     this.queue.push(func);
   }
 
-  priorityPush = (func: PriorityFunction) => {
+  priorityPush = (func: RenderFunction) => {
     this.priorityQueue.push(func);
   }
   

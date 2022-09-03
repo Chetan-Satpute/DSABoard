@@ -61,7 +61,7 @@ class Canvas {
         this.matrix.e += diff.x;
         this.matrix.f += diff.y;
 
-        this.draw();
+        await this.draw();
 
         this.matrix.e -= diff.x;
         this.matrix.f -= diff.y;
@@ -75,7 +75,7 @@ class Canvas {
       this.matrix.e += event.clientX - this.start.x;
       this.matrix.f += event.clientY - this.start.y;
 
-      this.draw();
+      await this.draw();
     });
   };
 
@@ -110,7 +110,7 @@ class Canvas {
       this.matrix.e -= newPosition.x - position.x;
       this.matrix.f -= newPosition.y - position.y;
 
-      this.draw();
+      await this.draw();
     });
   };
 }
