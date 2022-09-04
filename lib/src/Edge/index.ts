@@ -36,7 +36,7 @@ class Edge {
     this.type = EdgeType.UNDIRECTED;
   }
 
-  draw(ctx: CanvasRenderingContext2D) {
+  draw = (ctx: CanvasRenderingContext2D) => {
     let [startPoint, endPoint] = getEndPoints(this.start, this.end);
 
     const angle = Math.atan2(
@@ -90,24 +90,20 @@ class Edge {
       drawHead(ctx, startPoint, endPoint);
       drawHead(ctx, endPoint, startPoint);
     }
-  }
-
-  grow = () => {
-    this.board?.render(async () => {
-      for (let i = this.percent; i <= 100; i++) {
-        this.percent = i;
-        await this.board.draw();
-      }
-    });
   };
 
-  shrink = () => {
-    this.board?.render(async () => {
-      for (let i = this.percent; i >= 0; i--) {
-        this.percent = i;
-        await this.board.draw();
-      }
-    });
+  grow = async () => {
+    for (let i = this.percent; i <= 100; i++) {
+      this.percent = i;
+      await this.board.wait(10);
+    }
+  };
+
+  shrink = async () => {
+    for (let i = this.percent; i >= 0; i--) {
+      this.percent = i;
+      await this.board.wait(10);
+    }
   };
 }
 

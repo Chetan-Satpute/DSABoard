@@ -18,7 +18,12 @@ class Structure {
     this.box = { x: 0, y: 0, width: 0, height: 0 };
   }
 
-  draw(ctx: CanvasRenderingContext2D) {}
+  draw = (ctx: CanvasRenderingContext2D) => {}
+
+  moveTo = (x: number, y: number) => {
+    this.box.x = x;
+    this.box.y = y;
+  };
 }
 
 export default Structure;

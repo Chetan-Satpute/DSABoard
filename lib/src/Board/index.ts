@@ -26,13 +26,10 @@ class Board {
 
   constructor(container: HTMLDivElement) {
     this.container = container;
-    this.canvas = new Canvas(this.priorityRender, this.draw);
+    this.canvas = new Canvas(this);
 
     this.container.appendChild(this.canvas.canvas);
     this.resizeCanvas();
-
-    // Resize canvas whenever container size changes
-    new ResizeObserver(this.draw).observe(this.container);
 
     this.structs = {};
     this.edges = {};
@@ -41,6 +38,12 @@ class Board {
     this.newEdgeId = 0;
 
     this.renderQueue = new RenderQueue();
+
+    // Resize canvas whenever container size changes
+    new ResizeObserver(this.draw).observe(this.container);
+
+    // Draw on canvas loop
+    window.requestAnimationFrame(this.draw);
   }
 
   /** Add a structure to board */
@@ -84,10 +87,7 @@ class Board {
   resizeCanvas = () =>
     this.canvas.resize(this.container.clientWidth, this.container.clientHeight);
 
-  draw = async () => {
-    // Wait for next animation frame
-    await new Promise(resolve => window.requestAnimationFrame(resolve));
-
+  draw = () => {
     const ctx = this.canvas.canvas.getContext("2d");
 
     // To resize canvas
@@ -105,14 +105,14 @@ class Board {
     for (let id in this.edges) {
       this.edges[id].draw(ctx);
     }
+
+    // Wait for next animation frame
+    window.requestAnimationFrame(this.draw);
   };
 
-  render = (func: () => Promise<void>) => {
-    this.renderQueue.push(func);
-  };
-
-  priorityRender = (func: () => Promise<void>) => {
-    this.renderQueue.priorityPush(func);
+  /** Wait for specified time (500 ms by default) */
+  wait = async (time: number = 500) => {
+    await new Promise((resolve) => setTimeout(resolve, time));
   };
 }
 

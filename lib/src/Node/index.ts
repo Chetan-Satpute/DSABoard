@@ -30,12 +30,22 @@ class Node extends Structure {
     this.box = { x: 0, y: 0, width: Node.WIDTH, height: Node.HEIGHT };
   }
 
-  moveTo = (x: number, y: number) => {
-    this.box.x = x;
-    this.box.y = y;
-  };
 
-  draw(ctx: CanvasRenderingContext2D) {
+  setRoundedCorners(
+    topLeft: boolean,
+    topRight: boolean,
+    bottomLeft: boolean,
+    bottomRight: boolean
+  ) {
+    this.roundedCorners = {
+      topLeft,
+      topRight,
+      bottomLeft,
+      bottomRight,
+    };
+  }
+
+  draw = (ctx: CanvasRenderingContext2D) => {
     let cornerRadius = Node.HEIGHT / 4;
 
     let x = this.box.x + Node.BORDER / 2;
@@ -101,7 +111,7 @@ class Node extends Structure {
       this.box.x + Node.WIDTH / 2,
       this.box.y + Node.HEIGHT / 2
     );
-  }
+  };
 }
 
 export default Node;
