@@ -2,7 +2,7 @@ import Node from "../Node";
 import Structure from "../Structure";
 
 class Array extends Structure {
-  private array: Node[];
+  array: Node[];
   length: number;
 
   constructor(values: number[] = []) {
