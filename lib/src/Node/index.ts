@@ -1,7 +1,9 @@
 import Structure from "../Structure";
+import Color from "./Color";
 
 class Node extends Structure {
   value: number;
+  color: Color;
 
   /** Which corner of the node should be rounded */
   roundedCorners: {
@@ -19,6 +21,7 @@ class Node extends Structure {
     super();
 
     this.value = value;
+    this.color = Color.Transparent;
 
     this.roundedCorners = {
       topLeft: true,
@@ -29,7 +32,6 @@ class Node extends Structure {
 
     this.box = { x: 0, y: 0, width: Node.WIDTH, height: Node.HEIGHT };
   }
-
 
   setRoundedCorners(
     topLeft: boolean,
@@ -97,7 +99,26 @@ class Node extends Structure {
 
     ctx.closePath();
 
-    ctx.strokeStyle = "#e5e5e5";
+    if (this.color != Color.Transparent) {
+      // Fill background color
+      const gradient = ctx.createRadialGradient(
+        this.box.x + this.box.width / 2,
+        this.box.y + this.box.height / 2,
+        Math.sqrt((this.box.width / 2) ** 2 + (this.box.height / 2) ** 2),
+        this.box.x + this.box.width / 2,
+        this.box.y + this.box.height / 2,
+        0
+      );
+
+      gradient.addColorStop(0, Color.Border);
+      gradient.addColorStop(0.4, this.color);
+      gradient.addColorStop(1, Color.Transparent);
+
+      ctx.fillStyle = gradient;
+      ctx.fill();
+    }
+
+    ctx.strokeStyle = Color.Border;
     ctx.lineWidth = 2;
     ctx.stroke();
 
